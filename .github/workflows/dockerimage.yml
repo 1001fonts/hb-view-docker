@@ -11,13 +11,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: build.sh
-  
-  push: 
-    
+      run: ./build.sh
+
+  push:
+
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
     - name: Push the Docker image
-      run: push.sh
+      run: ./push.sh

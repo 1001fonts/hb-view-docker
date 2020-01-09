@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 LABEL maintainer="Ole Rößner <o.roessner@neusta.de>"
 
@@ -10,14 +10,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     bzip2 \
     build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN cd /tmp \
+    && rm -rf /var/lib/apt/lists/*\
+    && cd /tmp \
     && wget http://www.freedesktop.org/software/harfbuzz/release/harfbuzz-0.9.35.tar.bz2 \
     && tar xjf harfbuzz-0.9.35.tar.bz2 \
     && cd harfbuzz-0.9.35 \
     && ./configure --prefix=/usr \
     && make \
-    && make install
+    && make install \
+    && rm -rf /tmp/harfbuzz-0.9.35
 
 CMD ["/usr/bin/hb-view"]
